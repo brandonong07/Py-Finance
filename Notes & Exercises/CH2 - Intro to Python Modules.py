@@ -1,17 +1,17 @@
 # Page 31 - 69
 # Python modules
 # Group of programs written by others to serve specific functions
-# Book explains NumPy, SciPPy, matplotlib, statsmodels, and Pandas
+# Book explains NumPy, SciPy, matplotlib, statsmodels, and Pandas
 
 # Importing Modules
-# imports all functions from math module
 # if you want to name it something (import math as m) --> then use m.sqrt() etc.
 import math as m 
 import time as t
 import numpy as np
 import scipy as sp
-import matplotlib as mp
 import yfinance as yf
+import pandas as pd
+
 
 num = m.sqrt(23)
 print(round(num, 5))
@@ -54,7 +54,41 @@ np.size(arr) # Returns 6 (because there are 6 elements)
 np.std(arr) # Std. dev of elements
 (np.std(arr, 0)) # Std. dev of each row
 
-# Introduction to SciPy
+# Introduction to Matplotlib
+# Used to create various types of graphs, outputs in PDF, Postscript, SVG, PNG
+import matplotlib.pyplot as plt
+import datetime as dt
+from mplfinance import *
+from matplotlib.dates import MonthLocator, DateFormatter
+
+ticker = "AAPL"
+start = dt.date(2022, 1, 1) 
+end = dt.date(2024, 12, 31)
+months = MonthLocator(range(1,13), bymonthday=1, interval=1) # Every month
+monthsFmt = DateFormatter("%b %Y") 
+data = yf.Ticker(ticker) 
+data = data.history(start=start, end=end) # Get historical data
+
+"""
+plot(data, type='candle', style='charles', title=f"{ticker} Price Chart 2022-2024",
+     ylabel="Price ($)", mav=(20,50,100))
+plots daily candlestick chart with 20, 50, 100 day moving averages
+show()
+"""
+
+# Introduction to pandas
+# Used for data manipulation and analysis, especially with tabular data
+data = {'Name': ['Alice', 'Bob', 'Charlie'],
+        'Age': [25, 30, 35],
+        'City': ['New York', 'Los Angeles', 'Chicago']}
+
+df = pd.DataFrame(data)
+
+print(np.mean(data['Age'])) 
+# Calculates mean age
+# Access data via column name df['Name'], df['Age']
+# Access row data via iloc df.iloc[0] for first row
+
 
 
 
