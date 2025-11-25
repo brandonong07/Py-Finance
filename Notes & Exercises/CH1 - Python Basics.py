@@ -25,3 +25,23 @@ else:
 
 # Data input
 # Example: Yahoo Finance pricing IBM
+
+import yfinance as yf
+data = yf.Ticker("IBM")
+data.history(period="5d")
+
+# Accessing specific columns
+print(data.history(period="5d")['Close'])
+print(data.history(period="5d")['Volume'])
+
+# Accessing certain days
+print(data.history(period="5d").iloc[0]) # First day
+
+# Data manipulation
+# help(''.split) Learning more about functions, and using help() function
+s = "Hello, World!"
+s_list = s.split(",")  # Splits string into list at comma
+print(s_list)
+
+
+
